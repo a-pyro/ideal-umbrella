@@ -1,52 +1,24 @@
-import { API_URL } from './common'
+import { API_URL, ApiResponse, tryAction } from './common';
 
-// {
-//   "products": [
-//     {
-//       "id": 1,
-//       "title": "iPhone 9",
-//       "description": "An apple mobile which is nothing like apple",
-//       "price": 549,
-//       "discountPercentage": 12.96,
-//       "rating": 4.69,
-//       "stock": 94,
-//       "brand": "Apple",
-//       "category": "smartphones",
-//       "thumbnail": "...",
-//       "images": ["...", "...", "..."]
-//     },
-//     {...},
-//     {...},
-//     {...}
-//     // 30 items
-//   ],
+export type Product = {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+};
 
-//   "total": 100,
-//   "skip": 0,
-//   "limit": 30
-// }
+type ProductsResponse = ApiResponse<{ products: Product[] }>;
 
-type Product = {
-  id: number
-  title: string
-  description: string
-  price: number
-  discountPercentage: number
-  rating: number
-  stock: number
-  brand: string
-  category: string
-  thumbnail: string
-  images: string[]
-}
-
-type ApiResponse<T> = {
-  total: number
-  skip: number
-  limit: number
-} & T
-
-export const getProducts = async () => {
-  const response = await fetch(`${API_URL}/products`)
-  return response.json()
-}
+export const getProducts = async () =>
+  tryAction(async () => {
+    const response = await fetch(`${API_URL}/products`);
+    const products = (await response.json()) as ProductsResponse;
+    return products;
+  });
