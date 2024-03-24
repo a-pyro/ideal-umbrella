@@ -5,14 +5,14 @@ import { ProductCard } from './product-card';
 
 export const ProductList = ({ products }: { products: Product[] }) => {
   return (
-    <GridContainer
-      items={products.map((product) => (
+    <GridContainer>
+      {products.map((product) => (
         <ProductCard
           key={product.id}
           product={product}
           onAddToCart={() => console.log('Add to cart', product.id)}
         />
       ))}
-    />
+    </GridContainer>
   );
 };

@@ -1,4 +1,3 @@
-import Container from '@mui/material/Container';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,7 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  return (
-    <Container maxWidth="lg">Welcome to the ideal umbrella shop!</Container>
-  );
+  return <main>Welcome to the ideal umbrella shop!</main>;
 }

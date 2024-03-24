@@ -6,17 +6,8 @@ export const GridItem = ({ children, ...props }: GridTypeMap['props']) => (
   </Grid>
 );
 
-type GridContainerProps = GridTypeMap['props'] & {
-  items: React.ReactElement[];
-};
-export const GridContainer = ({
-  children,
-  items,
-  ...props
-}: GridContainerProps) => (
+export const GridContainer = ({ children, ...props }: GridTypeMap['props']) => (
   <Grid container {...props}>
-    {items.map((item, index) => (
-      <GridItem key={index}>{item}</GridItem>
-    ))}
+    {children}
   </Grid>
 );
