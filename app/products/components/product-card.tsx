@@ -1,5 +1,5 @@
 'use client';
-import { GridItem } from '@/components/layout/grid';
+import { GridItem, UButton } from '@/components';
 import { Product } from '@/services/api/products';
 import Image from 'next/image';
 
@@ -22,7 +22,7 @@ export const ProductCard = ({
       <p>{product.description}</p>
       <p>{product.price}</p>
       <p>Rating: {product.rating}</p>
-      <button onClick={onAddToCart}>Add to cart</button>
+      <UButton onClick={onAddToCart}>Add to cart</UButton>
     </GridItem>
   );
 };
