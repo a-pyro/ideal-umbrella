@@ -1,7 +1,8 @@
-'use client';
-import { GridContainer } from '@/components/layout/grid';
-import { Product } from '@/services/api/products';
-import { ProductCard } from './product-card';
+'use client'
+import { GridContainer } from '@/components/layout/grid'
+import { type Product } from '@/services/api/products'
+
+import { ProductCard } from './product-card'
 
 export const ProductList = ({ products }: { products: Product[] }) => {
   return (
@@ -9,10 +10,12 @@ export const ProductList = ({ products }: { products: Product[] }) => {
       {products.map((product) => (
         <ProductCard
           key={product.id}
+          onAddToCart={() => {
+            // Add to cart logic
+          }}
           product={product}
-          onAddToCart={() => console.log('Add to cart', product.id)}
         />
       ))}
     </GridContainer>
-  );
-};
+  )
+}

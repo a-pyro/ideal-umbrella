@@ -1,22 +1,23 @@
-'use client';
-import { GridItem, UButton } from '@/components';
-import { Product } from '@/services/api/products';
-import Image from 'next/image';
+'use client'
+import Image from 'next/image'
+
+import { GridItem, UButton } from '@/components'
+import { type Product } from '@/services/api/products'
 
 export const ProductCard = ({
-  product,
   onAddToCart,
+  product,
 }: {
-  product: Product;
-  onAddToCart: () => void;
+  onAddToCart: () => void
+  product: Product
 }) => {
   return (
-    <GridItem xs={12} sm={6} md={4} width={100}>
+    <GridItem md={4} sm={6} width={100} xs={12}>
       <Image
-        src={product.thumbnail}
         alt={product.title}
-        width={300}
         height={300}
+        src={product.thumbnail}
+        width={300}
       />
       <h2>{product.title}</h2>
       <p>{product.description}</p>
@@ -24,5 +25,5 @@ export const ProductCard = ({
       <p>Rating: {product.rating}</p>
       <UButton onClick={onAddToCart}>Add to cart</UButton>
     </GridItem>
-  );
-};
+  )
+}

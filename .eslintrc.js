@@ -1,12 +1,13 @@
-const { resolve } = require('node:path');
-const { JAVASCRIPT_FILES } = require('@vercel/style-guide/eslint/constants');
+const { resolve } = require('node:path')
+// https://eslint-plugin-perfectionist.azat.io/
 
-const project = resolve(__dirname, 'tsconfig.json');
+const project = resolve(__dirname, 'tsconfig.json')
 
-/** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
+  plugins: ['eslint-plugin-perfectionist'],
   extends: [
+    'plugin:perfectionist/recommended-alphabetical',
     require.resolve('@vercel/style-guide/eslint/browser'),
     require.resolve('@vercel/style-guide/eslint/react'),
     require.resolve('@vercel/style-guide/eslint/next'),
@@ -35,13 +36,22 @@ module.exports = {
         ListDivider: 'li',
         NextImage: 'img',
         NextLink: 'a',
+        SvgIcon: 'svg',
         Textarea: 'textarea',
       },
     },
   },
   rules: {
-    '@typescript-eslint/consistent-type-imports': 'off',
+    'perfectionist/sort-imports': 'off',
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
+      {
+        prefer: 'type-imports',
+        // fixStyle: 'inline-type-imports',
+      },
+    ],
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/no-confusing-void-expression': [
       'error',
       { ignoreArrowShorthand: true },
@@ -51,17 +61,7 @@ module.exports = {
       'error',
       { checksVoidReturn: false },
     ],
-    '@typescript-eslint/restrict-template-expressions': [
-      'error',
-      {
-        allowAny: false,
-        allowBoolean: false,
-        allowNullish: false,
-        allowNumber: true,
-        allowRegExp: false,
-        allowNever: false,
-      },
-    ],
+
     'react/function-component-definition': [
       'warn',
       {
@@ -94,34 +94,69 @@ module.exports = {
         alphabetize: { order: 'asc' },
       },
     ],
-    // sort named imports within an import statement
     'sort-imports': ['warn', { ignoreDeclarationSort: true }],
+    '@typescript-eslint/restrict-template-expressions': [
+      'error',
+      {
+        allowNumber: true,
+      },
+    ],
+    'react/prefer-stateless-function': 'error',
+    'react/button-has-type': 'error',
+    'react/no-unused-prop-types': 'error',
+    'react/jsx-pascal-case': 'error',
+    'react/jsx-no-script-url': 'error',
+    'react/no-children-prop': 'error',
+    'react/no-danger': 'error',
+    'react/no-danger-with-children': 'error',
+    'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
+    'react/jsx-fragments': 'error',
+    'react/destructuring-assignment': [
+      'error',
+      'always',
+      { destructureInSignature: 'always' },
+    ],
+    'react/jsx-no-leaked-render': ['error', { validStrategies: ['ternary'] }],
+    'react/jsx-max-depth': ['error', { max: 5 }],
+    'react/function-component-definition': [
+      'warn',
+      { namedComponents: 'arrow-function' },
+    ],
+    'react/jsx-key': [
+      'error',
+      {
+        checkFragmentShorthand: true,
+        checkKeyMustBeforeSpread: true,
+        warnOnDuplicates: true,
+      },
+    ],
+    'react/jsx-no-useless-fragment': 'warn',
+    'react/jsx-curly-brace-presence': 'warn',
+    'react/no-typos': 'warn',
+    'react/display-name': 'warn',
+    'react/self-closing-comp': 'warn',
+    'react/jsx-sort-props': 'warn',
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/prop-types': 'off',
   },
   overrides: [
-    /**
-     * JS files are using @babel/eslint-parser, so typed linting doesn't work there.
-     * @see {@link https://github.com/vercel/style-guide/blob/canary/eslint/_base.js}
-     * @see {@link https://typescript-eslint.io/linting/typed-linting#how-can-i-disable-type-aware-linting-for-a-subset-of-files}
-     */
-    {
-      files: JAVASCRIPT_FILES,
-      extends: ['plugin:@typescript-eslint/disable-type-checked'],
-    },
-    // Varies file convention from libraries, e.g. Next.js App Router and Prettier
+    // Next.js App Router file convention
     // Must use default export
     {
       files: [
-        'next.config.mjs',
-        'prettier.config.mjs',
-        'unlighthouse.config.ts',
+        'middleware.ts',
         'app/**/page.tsx',
         'app/**/layout.tsx',
         'app/**/not-found.tsx',
         'app/**/*error.tsx',
-        'app/apple-icon.tsx',
-        'app/**/opengraph-image.tsx',
+        'app/**/loading.tsx',
         'app/sitemap.ts',
         'app/robots.ts',
+        'app/manifest.ts',
+        'app/opengraph-image.tsx',
+        'app/twitter-image.tsx',
+        'tailwind.config.ts',
       ],
       rules: {
         'import/no-default-export': 'off',
@@ -134,4 +169,4 @@ module.exports = {
       rules: { 'import/no-default-export': 'off' },
     },
   ],
-};
+}

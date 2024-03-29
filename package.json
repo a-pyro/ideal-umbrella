@@ -4,11 +4,16 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "check": "yarn check:lint && yarn check:types && yarn check:format",
+    "check:format": "prettier --check .",
+    "check:lint": "eslint . --ext .ts,.tsx",
+    "check:types": "tsc --noEmit",
     "dev": "next dev",
+    "format": "prettier --write .",
     "lint": "next lint",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "start": "next start"
   },
-  "prettier": "@vercel/style-guide/prettier",
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
@@ -26,6 +31,7 @@
     "@vercel/style-guide": "^6.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
+    "eslint-plugin-perfectionist": "^2.7.0",
     "prettier": "^3.2.5",
     "typescript": "^5"
   }
