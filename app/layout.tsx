@@ -1,8 +1,9 @@
-import { Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import { Navigation } from '@/components'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,7 +26,12 @@ const RootLayout = ({
     <html lang="en">
       <AppRouterCacheProvider>
         <body className={inter.className}>
-          <Container maxWidth="md">{children}</Container>
+          <Container maxWidth="md" sx={{ paddingTop: 4 }}>
+            <Box display="flex" flexDirection="column" gap={3}>
+              <Navigation />
+              {children}
+            </Box>
+          </Container>
         </body>
       </AppRouterCacheProvider>
     </html>

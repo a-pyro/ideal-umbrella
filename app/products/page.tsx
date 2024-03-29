@@ -5,10 +5,10 @@ import { ProductList } from './components/product-list'
 const ProductsPage = async () => {
   const { products } = await getProducts()
   return (
-    <section>
+    <main>
       <h1>Products</h1>
       <ProductList products={products} />
-    </section>
+    </main>
   )
 }
 
