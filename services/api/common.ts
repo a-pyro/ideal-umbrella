@@ -1,4 +1,6 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL
+import { envVars } from '../../env.mjs'
+
+export const API_URL = envVars.NEXT_PUBLIC_API_URL
 
 export type ApiResponse<T> = {
   limit: number

@@ -10,6 +10,10 @@ const nextConfig = {
       },
     ],
   },
-};
 
-export default nextConfig;
+  experimental: {
+    typedRoutes: true,
+  },
+}
+
+export default nextConfig

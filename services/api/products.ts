@@ -16,7 +16,6 @@ export type Product = {
 }
 
 type ProductsResponse = ApiResponse<{ products: Product[] }>
-
 export const getProducts = async () =>
   tryAction(async () => {
     const response = await fetch(`${API_URL}/products`)
