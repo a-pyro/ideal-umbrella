@@ -1,8 +1,10 @@
 import { z } from 'zod'
 
+import { formatCurrency } from '@/utils'
+
 import { API_URL, ResposeParse, tryAction } from './common'
 
-const ProductParse = z.object({
+const ApiProductSchema = z.object({
   brand: z.string(),
   category: z.string(),
   description: z.string(),
@@ -16,19 +18,26 @@ const ProductParse = z.object({
   title: z.string(),
 })
 
-const ProductsResponse = z
+// probably wanna pass currency as a parameter
+const ProductSchema = ApiProductSchema.transform((product) => ({
+  ...product,
+  priceLabel: formatCurrency(product.price),
+  title: product.title,
+}))
+
+const ProductsResponseSchema = z
   .object({
-    products: z.array(ProductParse),
+    products: z.array(ProductSchema),
   })
   .merge(ResposeParse)
 
-export type Product = z.infer<typeof ProductParse>
+export type ApiProduct = z.infer<typeof ApiProductSchema>
 
-type ProductsResponse = z.infer<typeof ProductsResponse>
+export type Product = z.infer<typeof ProductSchema>
 
 export const getProducts = async () =>
   tryAction(async () => {
     const response = await fetch(`${API_URL}/products`)
-    const { products } = ProductsResponse.parse(await response.json())
+    const { products } = ProductsResponseSchema.parse(await response.json())
     return { products }
   })

@@ -38,7 +38,7 @@ export const ProductCard = ({
             padding: '16px',
           }}
         >
-          <Typography variant="h6">{product.price}</Typography>
+          <Typography variant="h6">{product.priceLabel}</Typography>
           <UButton onClick={onAddToCart}>Add to cart</UButton>
         </CardActions>
       </Card>
