@@ -18,7 +18,7 @@ export const ProductCard = ({
 }) => {
   return (
     <GridItem lg={3} md={4} p={1} sm={6} xs={12}>
-      <Card>
+      <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <CardActionArea>
           <CardMedia
             alt="green iguana"
@@ -26,16 +26,19 @@ export const ProductCard = ({
             height="200"
             image={product.thumbnail}
           />
-          <CardContent>
-            <Typography component="div" gutterBottom variant="h5">
-              {product.title}
-            </Typography>
-            <Typography color="text.secondary" variant="body2">
-              {product.description}
-            </Typography>
+          <CardContent sx={{ flex: '1' }}>
+            <Typography variant="h6">{product.title}</Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            mt: 'auto',
+            padding: '16px',
+          }}
+        >
+          <Typography variant="h6">{product.price}</Typography>
           <UButton onClick={onAddToCart}>Add to cart</UButton>
         </CardActions>
       </Card>
