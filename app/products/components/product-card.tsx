@@ -25,11 +25,12 @@ export const ProductCard = ({
           <CardMedia
             alt="green iguana"
             component="img"
+            draggable={false}
             height="200"
             image={product.thumbnail}
           />
           <CardContent sx={{ flex: '1' }}>
-            <Typography variant="h6">{product.title}</Typography>
+            <Typography variant="h5">{product.title}</Typography>
           </CardContent>
         </CardActionArea>
         <CardActions

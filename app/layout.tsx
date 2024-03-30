@@ -1,10 +1,11 @@
-import { Box, Container } from '@mui/material'
+import { Box, Container, ThemeProvider } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
 import { Navigation } from '@/components'
-import './globals.css'
+import { theme } from '@/style/theme'
+import '../style/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,14 +26,16 @@ const RootLayout = ({
   return (
     <html lang="en">
       <AppRouterCacheProvider>
-        <body className={inter.className}>
-          <Container maxWidth="lg" sx={{ paddingTop: 4 }}>
-            <Box display="flex" flexDirection="column" gap={3}>
-              <Navigation />
-              {children}
-            </Box>
-          </Container>
-        </body>
+        <ThemeProvider theme={theme}>
+          <body className={inter.className}>
+            <Container maxWidth="lg" sx={{ paddingTop: 4 }}>
+              <Box display="flex" flexDirection="column" gap={3}>
+                <Navigation />
+                {children}
+              </Box>
+            </Container>
+          </body>
+        </ThemeProvider>
       </AppRouterCacheProvider>
     </html>
   )
