@@ -1,12 +1,16 @@
+import { z } from 'zod'
+
 import { envVars } from '../../env.mjs'
 
 export const API_URL = envVars.NEXT_PUBLIC_API_URL
 
-export type ApiResponse<T> = {
-  limit: number
-  skip: number
-  total: number
-} & T
+export const ResposeParse = z.object({
+  limit: z.number(),
+  skip: z.number(),
+  total: z.number(),
+})
+
+export type ApiResponse<T> = z.infer<typeof ResposeParse> & T
 
 type ApiError = {
   body?: Record<string, unknown>
