@@ -12,12 +12,14 @@ export const ProductCard = ({
   product: Product
 }) => {
   return (
-    <GridItem md={4} sm={6} width={100} xs={12}>
+    <GridItem md={4} padding={4} sm={6} width={100} xs={12}>
       <Image
         alt={product.title}
         height={300}
+        layout="responsive"
+        objectFit="contain"
         src={product.thumbnail}
-        width={300}
+        width={500}
       />
       <h2>{product.title}</h2>
       <p>{product.description}</p>
