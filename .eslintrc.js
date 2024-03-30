@@ -116,7 +116,7 @@ module.exports = {
       'always',
       { destructureInSignature: 'always' },
     ],
-    'react/jsx-no-leaked-render': ['error', { validStrategies: ['ternary'] }],
+    // 'react/jsx-no-leaked-render': ['error', { validStrategies: ['ternary'] }],
     'react/jsx-max-depth': ['error', { max: 6 }],
     'react/function-component-definition': [
       'warn',

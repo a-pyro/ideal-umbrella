@@ -19,7 +19,7 @@ export const ProductCard = ({
   onAddToCart: () => void
   product: Product
 }) => {
-  const router = useAppRouter()
+  const router = useAppRouter('products')
   return (
     <GridItem lg={3} md={4} p={1} sm={6} xs={12}>
       <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
