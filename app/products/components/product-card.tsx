@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
 import { GridItem } from '@/components'
+import { useAppRouter } from '@/router'
 import type { Product } from '@/services/api/products'
 
 export const ProductCard = ({
@@ -18,10 +19,11 @@ export const ProductCard = ({
   onAddToCart: () => void
   product: Product
 }) => {
+  const router = useAppRouter()
   return (
     <GridItem lg={3} md={4} p={1} sm={6} xs={12}>
       <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <CardActionArea>
+        <CardActionArea onClick={() => router.push(`/products/${product.id}`)}>
           <CardMedia
             alt="green iguana"
             component="img"
