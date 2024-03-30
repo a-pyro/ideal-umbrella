@@ -6,7 +6,7 @@ import { ProductCard } from './product-card'
 
 export const ProductList = ({ products }: { products: Product[] }) => {
   return (
-    <GridContainer>
+    <GridContainer mx={-1}>
       {products.map((product) => (
         <ProductCard
           key={product.id}

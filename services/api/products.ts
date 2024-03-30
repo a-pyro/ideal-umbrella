@@ -30,5 +30,5 @@ export const getProducts = async () =>
   tryAction(async () => {
     const response = await fetch(`${API_URL}/products`)
     const { products } = ProductsResponse.parse(await response.json())
-    return products
+    return { products }
   })

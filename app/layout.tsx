@@ -26,7 +26,7 @@ const RootLayout = ({
     <html lang="en">
       <AppRouterCacheProvider>
         <body className={inter.className}>
-          <Container maxWidth="md" sx={{ paddingTop: 4 }}>
+          <Container maxWidth="lg" sx={{ paddingTop: 4 }}>
             <Box display="flex" flexDirection="column" gap={3}>
               <Navigation />
               {children}
