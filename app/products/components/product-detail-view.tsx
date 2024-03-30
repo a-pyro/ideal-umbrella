@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element -- no need */
-import { Box, Divider, Stack, Typography } from '@mui/material'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
 
 import { GridContainer, GridItem } from '@/components'
 import type { Product } from '@/services/api/products'
@@ -68,6 +69,13 @@ export const ProductDetailView = ({ product }: Props) => {
         <Stack flex={1} px={2}>
           <Typography variant="h6">{product.priceLabel}</Typography>
           <Typography variant="h6">{product.rating}</Typography>
+          <Stack alignItems="center" direction="row" mt={3}>
+            {/* TODO FIX THIS STYLE */}
+            <IconButton sx={{ p: 0 }}>
+              <AddCircleOutlineIcon />
+              Add to cart
+            </IconButton>
+          </Stack>
         </Stack>
       </Stack>
     </Stack>
