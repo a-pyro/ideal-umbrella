@@ -1,11 +1,17 @@
 'use client'
 
-import { useAppRouter } from '@/router'
+import type { Product } from '@/services/api/products'
 
-export const ProductDetailView = () => {
-  const {
-    params: { id },
-  } = useAppRouter('productDetail')
+type Props = {
+  product: Product
+}
 
-  return <div>ProductDetailView</div>
+export const ProductDetailView = ({ product }: Props) => {
+  return (
+    <div>
+      <h1>{product.title}</h1>
+      <p>{product.description}</p>
+      <p>{product.priceLabel}</p>
+    </div>
+  )
 }

@@ -41,3 +41,10 @@ export const getProducts = async () =>
     const { products } = ProductsResponseSchema.parse(await response.json())
     return { products }
   })
+
+export const getProduct = async (id: string) =>
+  tryAction(async () => {
+    const response = await fetch(`${API_URL}/products/${id}`)
+    const product = ProductSchema.parse(await response.json())
+    return { product }
+  })

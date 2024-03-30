@@ -1,4 +1,4 @@
-import { Box, Container, ThemeProvider } from '@mui/material'
+import { Container, ThemeProvider } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -28,11 +28,15 @@ const RootLayout = ({
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           <body className={inter.className}>
-            <Container maxWidth="lg" sx={{ paddingTop: 4 }}>
-              <Box display="flex" flexDirection="column" gap={3}>
-                <Navigation />
-                {children}
-              </Box>
+            <Container
+              maxWidth="lg"
+              sx={{
+                height: '100dvh',
+                paddingTop: 4,
+              }}
+            >
+              <Navigation sx={{ mb: 3 }} />
+              {children}
             </Container>
           </body>
         </ThemeProvider>
