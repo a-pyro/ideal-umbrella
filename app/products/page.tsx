@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography'
 
+import { getProducts } from '@/app/api/products/fetch'
 import { PanelWrapper } from '@/components/layout'
-import { getProducts } from '@/services/api/products'
 
 import { ProductList } from './components/product-list'
 

@@ -8,9 +8,9 @@ import CardMedia from '@mui/material/CardMedia'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
+import type { Product } from '@/app/api/products/fetch'
 import { GridItem } from '@/components'
 import { useAppRouter } from '@/router'
-import type { Product } from '@/services/api/products'
 
 export const ProductCard = ({
   onAddToCart,

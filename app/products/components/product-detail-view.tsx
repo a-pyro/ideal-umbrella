@@ -3,10 +3,10 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
 
+import { addToCart } from '@/app/api/products/actions'
+import type { Product } from '@/app/api/products/fetch'
 import { GridContainer, GridItem } from '@/components'
 import { useCart } from '@/components/context'
-import type { Product } from '@/services/api/products'
-import { addToCart } from '@/services/api/products'
 
 type Props = {
   product: Product

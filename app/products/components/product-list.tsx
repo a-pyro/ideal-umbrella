@@ -1,6 +1,6 @@
 'use client'
+import type { Product } from '@/app/api/products/fetch'
 import { GridContainer } from '@/components/layout/grid'
-import type { Product } from '@/services/api/products'
 
 import { ProductCard } from './product-card'
 

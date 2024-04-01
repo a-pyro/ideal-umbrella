@@ -1,6 +1,6 @@
+import { getProduct } from '@/app/api/products/fetch'
 import { PanelWrapper } from '@/components/layout'
 import type { PageProps } from '@/router'
-import { getProduct } from '@/services/api/products'
 
 import { ProductDetailView } from '../components/product-detail-view'
 

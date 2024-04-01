@@ -1,7 +1,7 @@
 'use client'
 import React, { createContext, useContext, useState } from 'react'
 
-import type { Cart } from '@/services/api/products'
+import type { Cart } from '@/app/api/products/fetch'
 
 const useCartState = () =>
   // eslint-disable-next-line react/hook-use-state -- dont need to use them, just returning the hook invocation
