@@ -1,11 +1,9 @@
-import { Container, ThemeProvider } from '@mui/material'
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
+import { Container } from '@mui/material'
 import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
 import { Navigation } from '@/components'
-import { CartProvider } from '@/components/context'
-import { theme } from '@/style/theme'
+import { CartProvider, ContextProvider } from '@/components/context'
 import '../style/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -27,24 +25,22 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <AppRouterCacheProvider>
-        <ThemeProvider theme={theme}>
-          <body className={inter.className}>
-            <Container
-              maxWidth="lg"
-              sx={{
-                height: '100dvh',
-                paddingTop: 4,
-              }}
-            >
-              <CartProvider>
-                <Navigation sx={{ mb: 3 }} />
-                {children}
-              </CartProvider>
-            </Container>
-          </body>
-        </ThemeProvider>
-      </AppRouterCacheProvider>
+      <ContextProvider>
+        <body className={inter.className}>
+          <Container
+            maxWidth="lg"
+            sx={{
+              height: '100dvh',
+              paddingTop: 4,
+            }}
+          >
+            <CartProvider>
+              <Navigation sx={{ mb: 3 }} />
+              {children}
+            </CartProvider>
+          </Container>
+        </body>
+      </ContextProvider>
     </html>
   )
 }
