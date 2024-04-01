@@ -1,7 +1,7 @@
 'use client'
 /* eslint-disable @next/next/no-img-element -- no need */
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Button, Divider, Stack, Typography } from '@mui/material'
 
 import { addToCart } from '@/app/api/cart/actions'
 import type { Product } from '@/app/api/products/fetch'
@@ -16,7 +16,7 @@ export const ProductDetailView = ({ product }: Props) => {
   const firstImage = product.images[0]
   const middleImages = product.images.slice(1, -1)
   const lastImage = product.images[product.images.length - 1]
-  const [cart, setCart] = useCart()
+  const [, setCart] = useCart()
 
   return (
     <Stack spacing={2}>
@@ -74,18 +74,15 @@ export const ProductDetailView = ({ product }: Props) => {
           <Typography variant="h6">{product.priceLabel}</Typography>
           <Typography variant="h6">{product.rating}</Typography>
           <Stack alignItems="center" direction="row" mt={3}>
-            {/* TODO FIX THIS STYLE */}
-            <IconButton
+            <Button
+              color="primary"
               onClick={async () => {
                 setCart(await addToCart(product.id))
               }}
-              sx={{ p: 0 }}
             >
-              <AddCircleOutlineIcon />
-              {/* TODO: Remove this useless counter, is here only for test */}
-              {cart.products.length}
+              <AddCircleOutlineIcon sx={{ mr: 1 }} />
               Add to cart
-            </IconButton>
+            </Button>
           </Stack>
         </Stack>
       </Stack>

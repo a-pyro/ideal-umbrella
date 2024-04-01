@@ -10,6 +10,11 @@ const roboto = Roboto({
 
 export const theme = responsiveFontSizes(
   createTheme({
+    palette: {
+      primary: {
+        main: '#333',
+      },
+    },
     typography: {
       fontFamily: roboto.style.fontFamily,
     },

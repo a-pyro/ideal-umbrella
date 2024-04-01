@@ -3,7 +3,7 @@ import { ClearAll } from '@mui/icons-material'
 import MailIcon from '@mui/icons-material/Mail'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import type { IconButtonProps } from '@mui/material'
-import { IconButton } from '@mui/material'
+import { Badge, IconButton } from '@mui/material'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
@@ -35,7 +35,10 @@ export const CartDrawer = () => {
 
   return (
     <aside>
-      <ShoppingCartButton onClick={toggleDrawer(true)} />
+      <ShoppingCartButton
+        onClick={toggleDrawer(true)}
+        totalItems={cart.products.length}
+      />
       <Drawer anchor="right" onClose={toggleDrawer(false)} open={isOpen}>
         <Box
           onClick={toggleDrawer(false)}
@@ -43,7 +46,10 @@ export const CartDrawer = () => {
           role="presentation"
         >
           <List>
-            <ShoppingCartButton onClick={toggleDrawer(true)} />
+            <ShoppingCartButton
+              onClick={toggleDrawer(true)}
+              totalItems={cart.products.length}
+            />
 
             {cart.products.map(({ id, title }, index) => (
               <ListItem disablePadding key={id}>
@@ -68,10 +74,15 @@ export const CartDrawer = () => {
   )
 }
 
-const ShoppingCartButton = (props: IconButtonProps) => {
+const ShoppingCartButton = ({
+  totalItems,
+  ...props
+}: IconButtonProps & { totalItems: number }) => {
   return (
     <IconButton {...props}>
-      <ShoppingCartOutlinedIcon />
+      <Badge badgeContent={totalItems} color="primary">
+        <ShoppingCartOutlinedIcon />
+      </Badge>
     </IconButton>
   )
 }
