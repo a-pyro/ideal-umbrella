@@ -19,7 +19,7 @@ export const ProductDetailView = ({ product }: Props) => {
   const [, setCart] = useCart()
 
   return (
-    <Stack spacing={2}>
+    <Stack pb={4} spacing={2}>
       <GridContainer spacing={2}>
         <GridItem md={4} sm={12} xs={12}>
           <img
