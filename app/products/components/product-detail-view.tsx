@@ -1,7 +1,7 @@
 'use client'
 /* eslint-disable @next/next/no-img-element -- no need */
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import { Box, Button, Divider, Stack, Typography } from '@mui/material'
+import { Box, Button, Divider, Rating, Stack, Typography } from '@mui/material'
 
 import { addToCart } from '@/app/api/cart/actions'
 import type { Product } from '@/app/api/products/fetch'
@@ -72,7 +72,7 @@ export const ProductDetailView = ({ product }: Props) => {
         </Stack>
         <Stack flex={1} px={2}>
           <Typography variant="h6">{product.priceLabel}</Typography>
-          <Typography variant="h6">{product.rating}</Typography>
+          <Rating name="read-only" readOnly value={product.rating} />
           <Stack alignItems="center" direction="row" mt={3}>
             <Button
               color="primary"

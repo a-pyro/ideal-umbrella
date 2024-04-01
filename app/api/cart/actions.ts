@@ -16,7 +16,7 @@ export const addToCart = async (productId: number) => {
         resolve({
           products: cartDb,
         })
-      }, 1000)
+      }, 500)
     })
   })
 }
@@ -34,7 +34,7 @@ export const removeFromCart = async (productId: number) => {
         resolve({
           products: cartDb,
         })
-      }, 1000)
+      }, 500)
     })
   })
 }
@@ -47,7 +47,7 @@ export const clearCart = async () => {
         resolve({
           products: cartDb,
         })
-      }, 1000)
+      }, 500)
     })
   })
 }
