@@ -1,21 +1,15 @@
 'use server'
 
 import { tryAction } from '../common'
-
-import type { Cart, Product } from './fetch'
-import { getProducts } from './fetch'
+import type { Cart, Product } from '../products/fetch'
+import { getProduct } from '../products/fetch'
 
 // fake cart
 const cartDb: Product[] = []
 
 export const addToCart = async (productId: number) => {
-  'use server' // mimik server action
   return tryAction(async () => {
-    const products = await getProducts()
-    const product = products.products.find((p) => p.id === productId)
-    if (!product) {
-      throw new Error('Product not found')
-    }
+    const { product } = await getProduct(`${productId}`)
     cartDb.push(product)
     return new Promise<Cart>((resolve) => {
       setTimeout(() => {

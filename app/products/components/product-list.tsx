@@ -1,5 +1,5 @@
 'use client'
-import { addToCart } from '@/app/api/products/actions'
+import { addToCart } from '@/app/api/cart/actions'
 import type { Product } from '@/app/api/products/fetch'
 import { useCart } from '@/components/context'
 import { GridContainer } from '@/components/layout/grid'

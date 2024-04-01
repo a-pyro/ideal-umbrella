@@ -3,7 +3,7 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
 
-import { addToCart } from '@/app/api/products/actions'
+import { addToCart } from '@/app/api/cart/actions'
 import type { Product } from '@/app/api/products/fetch'
 import { GridContainer, GridItem } from '@/components'
 import { useCart } from '@/components/context'
@@ -82,6 +82,7 @@ export const ProductDetailView = ({ product }: Props) => {
               sx={{ p: 0 }}
             >
               <AddCircleOutlineIcon />
+              {/* TODO: Remove this useless counter, is here only for test */}
               {cart.products.length}
               Add to cart
             </IconButton>
