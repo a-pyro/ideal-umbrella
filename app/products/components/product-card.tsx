@@ -28,8 +28,9 @@ export const ProductCard = ({
             alt="green iguana"
             component="img"
             draggable={false}
-            height="200"
+            height="200px"
             image={product.thumbnail}
+            sx={{ objectFit: 'contain' }}
           />
           <CardContent sx={{ flex: '1' }}>
             <Typography variant="h5">{product.title}</Typography>
