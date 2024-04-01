@@ -1,10 +1,11 @@
 'use client'
 import { ClearAll } from '@mui/icons-material'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import MailIcon from '@mui/icons-material/Mail'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
-import type { IconButtonProps } from '@mui/material'
-import { Badge, IconButton } from '@mui/material'
-import Box from '@mui/material/Box'
+import type { ButtonProps, IconButtonProps } from '@mui/material'
+import { Badge, Button, IconButton, Stack, Typography } from '@mui/material'
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -40,17 +41,22 @@ export const CartDrawer = () => {
         totalItems={cart.products.length}
       />
       <Drawer anchor="right" onClose={toggleDrawer(false)} open={isOpen}>
-        <Box
+        <Stack
+          flexGrow={1}
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
+          px={3}
+          py={2}
           role="presentation"
+          width={['100vw', '60vw', '30vw']}
         >
           <List>
-            <ShoppingCartButton
-              onClick={toggleDrawer(true)}
-              totalItems={cart.products.length}
-            />
-
+            <Stack direction="row">
+              <Typography variant="h6">Carrello</Typography>
+              <IconButton onClick={toggleDrawer(false)} sx={{ ml: 'auto' }}>
+                <HighlightOffIcon />
+              </IconButton>
+            </Stack>
             {cart.products.map(({ id, title }, index) => (
               <ListItem disablePadding key={id}>
                 <ListItemButton>
@@ -61,14 +67,15 @@ export const CartDrawer = () => {
                 </ListItemButton>
               </ListItem>
             ))}
-            <ClearCartButton
-              onClick={async () => {
-                setCart(await clearCart())
-                toggleDrawer(false)
-              }}
-            />
           </List>
-        </Box>
+          <ClearCartButton
+            onClick={async () => {
+              setCart(await clearCart())
+              toggleDrawer(false)
+            }}
+            sx={{ mt: 'auto', pl: 0 }}
+          />
+        </Stack>
       </Drawer>
     </aside>
   )
@@ -87,10 +94,10 @@ const ShoppingCartButton = ({
   )
 }
 
-const ClearCartButton = (props: IconButtonProps) => {
+const ClearCartButton = (props: ButtonProps) => {
   return (
-    <IconButton {...props}>
-      <ClearAll />
-    </IconButton>
+    <Button startIcon={<DeleteForeverIcon />} {...props}>
+      Svuota carrello
+    </Button>
   )
 }
