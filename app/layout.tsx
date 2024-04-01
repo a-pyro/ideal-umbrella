@@ -4,6 +4,7 @@ import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
 import { Navigation } from '@/components'
+import { CartProvider } from '@/components/context'
 import { theme } from '@/style/theme'
 import '../style/globals.css'
 
@@ -36,8 +37,10 @@ const RootLayout = ({
                 paddingTop: 4,
               }}
             >
-              <Navigation sx={{ mb: 3 }} />
-              {children}
+              <CartProvider>
+                <Navigation sx={{ mb: 3 }} />
+                {children}
+              </CartProvider>
             </Container>
           </body>
         </ThemeProvider>

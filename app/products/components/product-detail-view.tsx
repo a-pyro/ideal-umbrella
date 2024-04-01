@@ -1,9 +1,12 @@
+'use client'
 /* eslint-disable @next/next/no-img-element -- no need */
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { Box, Divider, IconButton, Stack, Typography } from '@mui/material'
 
 import { GridContainer, GridItem } from '@/components'
+import { useCart } from '@/components/context'
 import type { Product } from '@/services/api/products'
+import { addToCart } from '@/services/api/products'
 
 type Props = {
   product: Product
@@ -13,6 +16,7 @@ export const ProductDetailView = ({ product }: Props) => {
   const firstImage = product.images[0]
   const middleImages = product.images.slice(1, -1)
   const lastImage = product.images[product.images.length - 1]
+  const [cart, setCart] = useCart()
 
   return (
     <Stack spacing={2}>
@@ -71,8 +75,14 @@ export const ProductDetailView = ({ product }: Props) => {
           <Typography variant="h6">{product.rating}</Typography>
           <Stack alignItems="center" direction="row" mt={3}>
             {/* TODO FIX THIS STYLE */}
-            <IconButton sx={{ p: 0 }}>
+            <IconButton
+              onClick={async () => {
+                setCart(await addToCart(product.id))
+              }}
+              sx={{ p: 0 }}
+            >
               <AddCircleOutlineIcon />
+              {cart.products.length}
               Add to cart
             </IconButton>
           </Stack>

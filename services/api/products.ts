@@ -48,3 +48,32 @@ export const getProduct = async (id: string) =>
     const product = ProductSchema.parse(await response.json())
     return { product }
   })
+
+export type CartProduct = {
+  product: Product
+  quantity: number
+}
+
+export type Cart = {
+  products: Product[]
+}
+
+// fake cart
+const cartDb: Product[] = []
+
+export const addToCart = async (productId: number) =>
+  tryAction(async () => {
+    const products = await getProducts()
+    const product = products.products.find((p) => p.id === productId)
+    if (!product) {
+      throw new Error('Product not found')
+    }
+    cartDb.push(product)
+    return new Promise<Cart>((resolve) => {
+      setTimeout(() => {
+        resolve({
+          products: cartDb,
+        })
+      }, 1000)
+    })
+  })
