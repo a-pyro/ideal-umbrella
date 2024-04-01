@@ -59,7 +59,6 @@ export const ProductDetailView = ({ product }: Props) => {
           </GridItem>
         )}
       </GridContainer>
-
       <Stack
         direction="row"
         divider={<Divider flexItem orientation="vertical" />}
@@ -73,7 +72,13 @@ export const ProductDetailView = ({ product }: Props) => {
         <Stack flex={1} px={2}>
           <Typography variant="h6">{product.priceLabel}</Typography>
           <Rating name="read-only" readOnly value={product.rating} />
-          <Stack alignItems="center" direction="row" mt={3}>
+
+          <Stack
+            alignItems="center"
+            direction="row"
+            display={['none', 'block']}
+            mt={3}
+          >
             <Button
               color="primary"
               onClick={async () => {
@@ -85,6 +90,22 @@ export const ProductDetailView = ({ product }: Props) => {
             </Button>
           </Stack>
         </Stack>
+      </Stack>
+      <Stack
+        alignItems="center"
+        direction="row"
+        display={['block', 'none']}
+        mt={3}
+      >
+        <Button
+          color="primary"
+          onClick={async () => {
+            setCart(await addToCart(product.id))
+          }}
+        >
+          <AddCircleOutlineIcon sx={{ mr: 1 }} />
+          Add to cart
+        </Button>
       </Stack>
     </Stack>
   )
