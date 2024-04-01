@@ -1,11 +1,16 @@
 'use client'
-import { ClearAll } from '@mui/icons-material'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import MailIcon from '@mui/icons-material/Mail'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import type { ButtonProps, IconButtonProps } from '@mui/material'
-import { Badge, Button, IconButton, Stack, Typography } from '@mui/material'
+import {
+  Avatar,
+  Badge,
+  Button,
+  IconButton,
+  Stack,
+  Typography,
+} from '@mui/material'
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -40,7 +45,12 @@ export const CartDrawer = () => {
         onClick={toggleDrawer(true)}
         totalItems={cart.products.length}
       />
-      <Drawer anchor="right" onClose={toggleDrawer(false)} open={isOpen}>
+      <Drawer
+        anchor="right"
+        onClose={toggleDrawer(false)}
+        open={isOpen}
+        variant="persistent"
+      >
         <Stack
           flexGrow={1}
           onClick={toggleDrawer(false)}
@@ -57,11 +67,11 @@ export const CartDrawer = () => {
                 <HighlightOffIcon />
               </IconButton>
             </Stack>
-            {cart.products.map(({ id, title }, index) => (
+            {cart.products.map(({ id, thumbnail, title }) => (
               <ListItem disablePadding key={id}>
-                <ListItemButton>
+                <ListItemButton sx={{ pl: 0 }}>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <ClearAll /> : <MailIcon />}
+                    <Avatar alt={title} src={thumbnail} />
                   </ListItemIcon>
                   <ListItemText primary={title} />
                 </ListItemButton>
