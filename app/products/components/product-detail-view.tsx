@@ -8,6 +8,8 @@ import type { Product } from '@/app/api/products/fetch'
 import { GridContainer, GridItem } from '@/components'
 import { useCart } from '@/components/context'
 
+import { AddToCartButton } from './add-to-cart-btn'
+
 type Props = {
   product: Product
 }
@@ -79,15 +81,12 @@ export const ProductDetailView = ({ product }: Props) => {
             display={['none', 'block']}
             mt={3}
           >
-            <Button
-              color="primary"
+            <AddToCartButton
               onClick={async () => {
                 setCart(await addToCart(product.id))
               }}
-            >
-              <AddCircleOutlineIcon sx={{ mr: 1 }} />
-              Add to cart
-            </Button>
+              type="button"
+            />
           </Stack>
         </Stack>
       </Stack>

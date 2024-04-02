@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 
 import { Navigation } from '@/components'
 import { CartProvider, ContextProvider } from '@/components/context'
+
 import '../style/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })

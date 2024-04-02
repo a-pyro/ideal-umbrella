@@ -1,16 +1,16 @@
 'use client'
 
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { CardActionArea, CardActions } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
 import type { Product } from '@/app/api/products/fetch'
 import { GridItem } from '@/components'
 import { useAppRouter } from '@/router'
+
+import { AddToCartButton } from './add-to-cart-btn'
 
 export const ProductCard = ({
   onAddToCart,
@@ -45,9 +45,7 @@ export const ProductCard = ({
           }}
         >
           <Typography variant="h6">{product.priceLabel}</Typography>
-          <IconButton onClick={onAddToCart}>
-            <AddCircleOutlineIcon />
-          </IconButton>
+          <AddToCartButton onClick={onAddToCart} type="icon" />
         </CardActions>
       </Card>
     </GridItem>
